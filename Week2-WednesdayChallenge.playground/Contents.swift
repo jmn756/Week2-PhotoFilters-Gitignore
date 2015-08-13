@@ -25,3 +25,6 @@ func fiboNums() ->[Int] {
 var ans = [Int]()
 ans = fiboNums()
 
+println(ans)
+
+

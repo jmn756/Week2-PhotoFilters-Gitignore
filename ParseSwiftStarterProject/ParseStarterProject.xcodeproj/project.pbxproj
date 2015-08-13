@@ -29,6 +29,7 @@
 		B084256D1B799FAF00B99F47 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B084256C1B799FAF00B99F47 /* libz.dylib */; };
 		B08425721B7A628C00B99F47 /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08425711B7A628C00B99F47 /* FilterService.swift */; };
 		B08425741B7AB56D00B99F47 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08425731B7AB56D00B99F47 /* Keys.swift */; };
+		B0AF68C91B7BDCBD00C17A09 /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AF68C81B7BDCBD00C17A09 /* ImageResizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		B084256C1B799FAF00B99F47 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B08425711B7A628C00B99F47 /* FilterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
 		B08425731B7AB56D00B99F47 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		B0AF68C81B7BDCBD00C17A09 /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 		B084256E1B7A5BCA00B99F47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B0AF68C81B7BDCBD00C17A09 /* ImageResizer.swift */,
 				B08425731B7AB56D00B99F47 /* Keys.swift */,
 				B08425711B7A628C00B99F47 /* FilterService.swift */,
 			);
@@ -270,6 +273,7 @@
 			files = (
 				B08425721B7A628C00B99F47 /* FilterService.swift in Sources */,
 				B08425741B7AB56D00B99F47 /* Keys.swift in Sources */,
+				B0AF68C91B7BDCBD00C17A09 /* ImageResizer.swift in Sources */,
 				81BA814D1A49DA1800E65899 /* ViewController.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
 			);

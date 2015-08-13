@@ -8,22 +8,28 @@ import UIKit
 import Parse
 
 class ViewController: UIViewController {
-  
+
+//MARK: IBOutlets
   @IBOutlet weak var imageView: UIImageView!
-  
+  @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var selectButton: UIButton!
   
+//MARK: Variables
   var filterAction = [UIAlertAction]()
-  
   let picker: UIImagePickerController = UIImagePickerController()
+  let cgWidth = 600
+  let cgHeight = 600
+  //var filters: [(UIImage, CIContext) -> (UIImage!)] = [FilterService.applyFilter(<#image: UIImage#>, filter: <#String#>)]
   
-  let alert = UIAlertController(title: "Photo Filter Selection", message: "Please select photo location", preferredStyle: UIAlertControllerStyle.ActionSheet)
+  let alert = UIAlertController(title: "Photo Filter Selection", message: "Please select Photo or Filter", preferredStyle: UIAlertControllerStyle.ActionSheet)
   
-  
+//MARK: LifeCycle functions
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     if let image = imageView.image {
       selectButton.setTitle("Select Filter", forState: .Normal)
+      
+      //enabling filters and post actions, since an image has been selected
       for item in filterAction {
           item.enabled = true
         }
@@ -32,7 +38,6 @@ class ViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     
     let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (alert) -> Void in
       println("Selection cancelled")
@@ -64,14 +69,38 @@ class ViewController: UIViewController {
       
     }
     
+    let postAction = UIAlertAction(title: "Post Image", style: UIAlertActionStyle.Default)
+      { (alert) -> Void in
+      
+      let photoObject = PFObject(className: "Photos")
+      let size = CGSize(width: self.cgWidth, height: self.cgHeight)
+      if let image = self.imageView.image {
+        let resizedImage = ImageResizer.resizeImage(image, size: size)
+        let data = UIImageJPEGRepresentation(resizedImage, 1.0)
+        let file = PFFile(name: "postedImage.jpeg", data: data)
+        photoObject["image"] = file
+      }
+
+      photoObject.saveInBackgroundWithBlock({ (succeeded, error) -> Void in
+        if let error = error {
+          println("There was an error saving your photo to Parse")
+        } else {
+          println("Yay, the photo was saved")
+        }
+        
+      })
+
+    }
+    
     filterAction.insert(instantEffectAction, atIndex: 0)
     filterAction.insert(monoEffectAction, atIndex: 1)
     filterAction.insert(transferEffectAction, atIndex: 2)
+    filterAction.insert(postAction, atIndex: 3)
     
+    //disabling filter and post actions until an image has been selected
     for item in filterAction {
       item.enabled = false
     }
-    
     
     //adding alert actions
     alert.addAction(cancelAction)
@@ -79,6 +108,7 @@ class ViewController: UIViewController {
     alert.addAction(instantEffectAction)
     alert.addAction(monoEffectAction)
     alert.addAction(transferEffectAction)
+    alert.addAction(postAction)
     
     self.picker.delegate = self
     
@@ -90,6 +120,7 @@ class ViewController: UIViewController {
     
   }
 
+//MARK: IBActions
   @IBAction func buttonPressed(sender: UIButton) {
     
     alert.modalPresentationStyle = UIModalPresentationStyle.Popover
