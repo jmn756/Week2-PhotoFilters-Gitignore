@@ -20,6 +20,8 @@
 		81BA817B1A49E0E500E65899 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817A1A49E0E500E65899 /* SystemConfiguration.framework */; };
 		81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */; };
 		81BA81811A49E10C00E65899 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81801A49E10C00E65899 /* ParseUI.framework */; };
+		B02701F51B812343008FB210 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02701F41B812343008FB210 /* GalleryViewController.swift */; };
+		B02701F71B8137ED008FB210 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02701F61B8137ED008FB210 /* TimeLineViewController.swift */; };
 		B08425611B799F0500B99F47 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08425601B799F0500B99F47 /* CFNetwork.framework */; };
 		B08425631B799F1700B99F47 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08425621B799F1700B99F47 /* CoreGraphics.framework */; };
 		B08425651B799F3800B99F47 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08425641B799F3800B99F47 /* CoreLocation.framework */; };
@@ -30,6 +32,7 @@
 		B08425721B7A628C00B99F47 /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08425711B7A628C00B99F47 /* FilterService.swift */; };
 		B08425741B7AB56D00B99F47 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08425731B7AB56D00B99F47 /* Keys.swift */; };
 		B0AF68C91B7BDCBD00C17A09 /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AF68C81B7BDCBD00C17A09 /* ImageResizer.swift */; };
+		B0AF68CB1B7D3D8400C17A09 /* ThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AF68CA1B7D3D8400C17A09 /* ThumbnailCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +52,8 @@
 		81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		81BA81801A49E10C00E65899 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		81BA81821A49E27F00E65899 /* ParseStarterProject-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ParseStarterProject-Bridging-Header.h"; sourceTree = "<group>"; };
+		B02701F41B812343008FB210 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		B02701F61B8137ED008FB210 /* TimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		B08425601B799F0500B99F47 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		B08425621B799F1700B99F47 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B08425641B799F3800B99F47 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -59,6 +64,7 @@
 		B08425711B7A628C00B99F47 /* FilterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
 		B08425731B7AB56D00B99F47 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		B0AF68C81B7BDCBD00C17A09 /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
+		B0AF68CA1B7D3D8400C17A09 /* ThumbnailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				81BA814E1A49DA1800E65899 /* Main.storyboard */,
+				B0AF68CA1B7D3D8400C17A09 /* ThumbnailCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -180,6 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				81BA814C1A49DA1800E65899 /* ViewController.swift */,
+				B02701F41B812343008FB210 /* GalleryViewController.swift */,
+				B02701F61B8137ED008FB210 /* TimeLineViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -271,9 +280,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0AF68CB1B7D3D8400C17A09 /* ThumbnailCell.swift in Sources */,
+				B02701F51B812343008FB210 /* GalleryViewController.swift in Sources */,
 				B08425721B7A628C00B99F47 /* FilterService.swift in Sources */,
 				B08425741B7AB56D00B99F47 /* Keys.swift in Sources */,
 				B0AF68C91B7BDCBD00C17A09 /* ImageResizer.swift in Sources */,
+				B02701F71B8137ED008FB210 /* TimeLineViewController.swift in Sources */,
 				81BA814D1A49DA1800E65899 /* ViewController.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
 			);
