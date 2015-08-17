@@ -14,6 +14,8 @@ class TimeLineViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   
   var images = [UIImage]()
+  var photoResults = [PFObject]()
+  
   var createdDate = NSDate()
   
   override func viewDidLoad() {
@@ -28,22 +30,8 @@ class TimeLineViewController: UIViewController {
         println(error.localizedDescription)
       } else {
         if let photos = results as? [PFObject] {
-          for photo in photos {
-             self.createdDate = photo.createdAt!
-             if let imageFile = photo["image"] as? PFFile {
-              imageFile.getDataInBackgroundWithBlock({ (data, error) -> Void in
-                if let error = error {
-                  println(error.localizedDescription)
-                } else if let data = data,
-                  image = UIImage(data: data) {
-                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                      self.images.append(image)
-                      self.tableView.reloadData()
-                    })
-                }
-              })
-            }
-          }
+          self.photoResults = photos
+          self.tableView.reloadData()
         }
       }
       
@@ -55,15 +43,27 @@ class TimeLineViewController: UIViewController {
 extension TimeLineViewController: UITableViewDataSource {
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return images.count
+    return photoResults.count
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
      let cell = tableView.dequeueReusableCellWithIdentifier("timelineCell", forIndexPath: indexPath) as! TimelineTableViewCell
     
-    cell.parseImage.image = images[indexPath.row]
-    cell.createdLabel.text = "Created: \(createdDate)"
-    
+     let photo = photoResults[indexPath.row]
+     createdDate = photo.createdAt!
+     if let imageFile = photo["image"] as? PFFile {
+        imageFile.getDataInBackgroundWithBlock({ (data, error) -> Void in
+          if let error = error {
+            println(error.localizedDescription)
+          } else if let data = data,
+            image = UIImage(data: data) {
+              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                cell.parseImage.image = image
+                cell.createdLabel.text = "Created: \(self.createdDate)"
+              })
+          }
+        })
+    }
     return cell
   }
 }

@@ -122,12 +122,12 @@ class ViewController: UIViewController {
     alert.addAction(postAction)
     alert.addAction(galleryAction)
     
-    self.picker.delegate = self
+    picker.delegate = self
     
     if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-      self.picker.sourceType = UIImagePickerControllerSourceType.Camera
+      picker.sourceType = UIImagePickerControllerSourceType.Camera
     } else {
-      self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+      picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
     }
     
     displayImage = UIImage(named: "placerholder.jpg")
@@ -222,7 +222,7 @@ extension ViewController : UICollectionViewDataSource {
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! ThumbnailCell
-    
+    cell.imageView.image = nil
     let filter = filters[indexPath.row]
     if let thumbnail = thumbnail {
     imageQueue.addOperationWithBlock({ () -> Void in
