@@ -98,9 +98,9 @@ class ViewController: UIViewController {
         if let error = error {
           switch error.code {
           case PFErrorCode.ErrorInternalServer.rawValue, PFErrorCode.ErrorConnectionFailed.rawValue:
-             println("There was a problem with the Parse server, please try again later")
+             println(error.localizedDescription)
           default:
-            println("Your file could not be saved!. Try again later!")
+            println(error.localizedDescription)
           }
         } else {
           println("Yay, the photo was saved")
@@ -149,8 +149,9 @@ class ViewController: UIViewController {
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "ShowGallery" {
-      let controller = segue.destinationViewController as! GalleryViewController
-      controller.delegate = self
+      let galleryViewController = segue.destinationViewController as! GalleryViewController
+      galleryViewController.delegate = self
+      galleryViewController.desiredFinalImageSize = imageView.frame.size
     }
   }
 

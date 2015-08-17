@@ -41,7 +41,6 @@ class GalleryViewController: UIViewController {
       
     }
 
-  
   func pinchRecognized(pinch : UIPinchGestureRecognizer) {
     //println(pinch.scale)
     
@@ -81,12 +80,17 @@ extension GalleryViewController : UICollectionViewDataSource {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! ThumbnailCell
    
     if let asset = fetchResult[indexPath.row] as? PHAsset {
+      imageQueue.addOperationWithBlock({ () -> Void in
+
       PHCachingImageManager.defaultManager().requestImageForAsset(asset, targetSize: cellSize, contentMode: PHImageContentMode.AspectFill, options: nil) { (image, info) -> Void in
         
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
         if let image = image {
           cell.imageView.image = image
         }
+        })
       }
+      })
     }
     return cell
   }
@@ -101,16 +105,21 @@ extension GalleryViewController : UICollectionViewDelegate {
     options.synchronous = true
     
     if let asset = fetchResult[indexPath.row] as? PHAsset {
-      PHCachingImageManager.defaultManager().requestImageForAsset(asset, targetSize: desiredFinalImageSize, contentMode: PHImageContentMode.AspectFill, options: options) { (image, info) -> Void in
+      imageQueue.addOperationWithBlock({ () -> Void in
         
-        if let image = image {
-          self.delegate?.galleryViewController(self, didSelectImage: image)
-          self.navigationController?.popViewControllerAnimated(true)
+        PHCachingImageManager.defaultManager().requestImageForAsset(asset, targetSize: desiredFinalImageSize, contentMode: PHImageContentMode.AspectFill, options: options) { (image, info) -> Void in
+          
+
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            if let image = image {
+              self.delegate?.galleryViewController(self, didSelectImage: image)
+              self.navigationController?.popViewControllerAnimated(true)
+            }
+          })
         }
-      }
-    }
+      })
+
   }
 
 }
-
-
+}

@@ -92,10 +92,10 @@
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
+                                <exclude reference="yGz-6x-XrW"/>
                                 <exclude reference="Oz1-9H-HhQ"/>
                                 <include reference="unj-Jl-LuJ"/>
                                 <include reference="VAn-dV-Wn7"/>
-                                <exclude reference="yGz-6x-XrW"/>
                             </mask>
                         </variation>
                     </view>
@@ -147,14 +147,14 @@
                     </tabBar>
                     <connections>
                         <segue destination="h6j-AV-olG" kind="relationship" relationship="viewControllers" id="e2a-dV-Eom"/>
-                        <segue destination="jv6-or-BAx" kind="relationship" relationship="viewControllers" id="FSJ-8V-dd2"/>
+                        <segue destination="pkZ-qC-hFx" kind="relationship" relationship="viewControllers" id="FSJ-8V-dd2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nh4-kd-Oek" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-474" y="-189"/>
         </scene>
-        <!--Timeline-->
+        <!--Time Line View Controller-->
         <scene sceneID="WMa-Qq-6hO">
             <objects>
                 <viewController id="jv6-or-BAx" customClass="TimeLineViewController" customModule="ParseStarterProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -166,35 +166,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="900-cT-3Z6">
-                                <rect key="frame" x="16" y="20" width="568" height="580"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="101" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="O6h-cT-teP">
+                                <rect key="frame" x="0.0" y="64" width="600" height="423"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="timelineCell" id="5Q4-nS-DGF">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="timelineCell" rowHeight="101" id="Hdj-Dl-Vd6" customClass="TimelineTableViewCell" customModule="ParseStarterProject" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Q4-nS-DGF" id="Jdd-XO-2p6">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hdj-Dl-Vd6" id="PuA-3T-fKm">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eeK-Hy-8k7">
+                                                    <rect key="frame" x="15" y="0.0" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="210-gB-BDl"/>
+                                                        <constraint firstAttribute="width" constant="100" id="7QC-iv-mzs"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Lil-cI-ajz"/>
+                                                        <constraint firstAttribute="height" constant="100" id="j7I-pH-Moq"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KlR-mY-cu1">
+                                                    <rect key="frame" x="125" y="16" width="199" height="12"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="199" id="Chb-8P-hrF"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KlR-mY-cu1" firstAttribute="leading" secondItem="eeK-Hy-8k7" secondAttribute="trailing" constant="10" id="5dy-PO-gFH"/>
+                                                <constraint firstItem="KlR-mY-cu1" firstAttribute="leading" secondItem="eeK-Hy-8k7" secondAttribute="trailing" constant="10" id="E9e-cb-xSv"/>
+                                                <constraint firstAttribute="centerY" secondItem="eeK-Hy-8k7" secondAttribute="centerY" id="T8k-bb-CaY"/>
+                                                <constraint firstItem="KlR-mY-cu1" firstAttribute="leading" secondItem="PuA-3T-fKm" secondAttribute="leading" constant="125" id="c6k-cw-EaJ"/>
+                                                <constraint firstItem="KlR-mY-cu1" firstAttribute="top" secondItem="PuA-3T-fKm" secondAttribute="topMargin" constant="8" id="kvW-bY-TVC"/>
+                                                <constraint firstItem="KlR-mY-cu1" firstAttribute="top" secondItem="PuA-3T-fKm" secondAttribute="topMargin" constant="8" id="sUz-af-HXb"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="createdLabel" destination="KlR-mY-cu1" id="5n0-WC-hQX"/>
+                                            <outlet property="parseImage" destination="eeK-Hy-8k7" id="eJi-37-Dnk"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <sections/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="900-cT-3Z6" secondAttribute="trailing" id="9di-js-xeA"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="900-cT-3Z6" secondAttribute="bottom" id="BuQ-fS-czi"/>
-                            <constraint firstItem="900-cT-3Z6" firstAttribute="top" secondItem="SnQ-7k-Py5" secondAttribute="bottom" id="Z9L-es-HHa"/>
-                            <constraint firstItem="900-cT-3Z6" firstAttribute="leading" secondItem="9hz-Yg-FSJ" secondAttribute="leadingMargin" id="l8d-yJ-a2i"/>
+                            <constraint firstItem="O6h-cT-teP" firstAttribute="leading" secondItem="9hz-Yg-FSJ" secondAttribute="leadingMargin" constant="-16" id="GvP-TX-pSY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="O6h-cT-teP" secondAttribute="trailing" constant="-16" id="Noz-9C-adQ"/>
+                            <constraint firstItem="kVi-0l-fbe" firstAttribute="top" secondItem="O6h-cT-teP" secondAttribute="bottom" constant="64" id="ZbV-Xt-E5a"/>
+                            <constraint firstItem="O6h-cT-teP" firstAttribute="top" secondItem="SnQ-7k-Py5" secondAttribute="top" id="dpE-QS-ELY"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Timeline" image="516-archive-box" id="eTE-VE-Hbb"/>
+                    <navigationItem key="navigationItem" id="w0T-ry-aJj"/>
                     <connections>
-                        <outlet property="tableView" destination="900-cT-3Z6" id="gto-8m-eIs"/>
+                        <outlet property="tableView" destination="O6h-cT-teP" id="cvk-Jj-dIZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VvR-Io-PSw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-215" y="-910"/>
+            <point key="canvasLocation" x="1211" y="-870"/>
         </scene>
         <!--Gallery Controller-->
         <scene sceneID="rj0-gm-Dyc">
@@ -238,20 +271,44 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="hfn-EH-mmc" firstAttribute="leading" secondItem="vJm-Z8-zSg" secondAttribute="leadingMargin" constant="-16" id="4Jl-Ue-9AA"/>
                             <constraint firstAttribute="bottomMargin" secondItem="hfn-EH-mmc" secondAttribute="bottom" id="FxN-GJ-kBs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hfn-EH-mmc" secondAttribute="trailing" constant="-16" id="bW3-R0-bIx"/>
                             <constraint firstItem="hfn-EH-mmc" firstAttribute="top" secondItem="vJm-Z8-zSg" secondAttribute="topMargin" id="z0L-Wj-tMQ"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="4pn-A6-npV" appends="YES" id="Yac-rn-VCP"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="hfn-EH-mmc" id="gAB-Yi-gwC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uas-BR-oby" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="4pn-A6-npV"/>
             </objects>
             <point key="canvasLocation" x="1186" y="957"/>
+        </scene>
+        <!--Timeline-->
+        <scene sceneID="qsS-1S-LQ1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pkZ-qC-hFx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Timeline" image="516-archive-box" id="eTE-VE-Hbb"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nwu-HV-gT3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jv6-or-BAx" kind="relationship" relationship="rootViewController" id="O4W-Ka-2n6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qUa-7P-u9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="399" y="-870"/>
         </scene>
     </scenes>
     <resources>

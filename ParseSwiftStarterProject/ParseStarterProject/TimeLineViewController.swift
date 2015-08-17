@@ -12,28 +12,33 @@ import Parse
 class TimeLineViewController: UIViewController {
 
   @IBOutlet weak var tableView: UITableView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.dataSource = self
-      
-      let query = PFQuery(className: "Post")
-      
-      query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
-        if let error = error {
-          println(error.localizedDescription)
-        } else if let posts = results as? [PFObject] {
-          println(posts.count)
-          for post in posts {
-            if let imageFile = post["image"] as? PFFile {
+  
+  var images = [UIImage]()
+  var createdDate = NSDate()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    navigationItem.title = "Timeline Photos"
+    tableView.dataSource = self
+    let query = PFQuery(className: "Photos")
+    
+    query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+      if let error = error {
+        println(error.localizedDescription)
+      } else {
+        if let photos = results as? [PFObject] {
+          for photo in photos {
+             self.createdDate = photo.createdAt!
+             if let imageFile = photo["image"] as? PFFile {
               imageFile.getDataInBackgroundWithBlock({ (data, error) -> Void in
                 if let error = error {
                   println(error.localizedDescription)
                 } else if let data = data,
-                  image = UIImage(data: data){
+                  image = UIImage(data: data) {
                     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                      let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
-                      self.view.addSubview(imageView)
-                      imageView.image = image
+                      self.images.append(image)
+                      self.tableView.reloadData()
                     })
                 }
               })
@@ -41,19 +46,23 @@ class TimeLineViewController: UIViewController {
           }
         }
       }
-
+      
     }
-
+  }
 }
+
 
 extension TimeLineViewController: UITableViewDataSource {
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 0
+    return images.count
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCellWithIdentifier("timelineCell", forIndexPath: indexPath) as! UITableViewCell
+     let cell = tableView.dequeueReusableCellWithIdentifier("timelineCell", forIndexPath: indexPath) as! TimelineTableViewCell
+    
+    cell.parseImage.image = images[indexPath.row]
+    cell.createdLabel.text = "Created: \(createdDate)"
     
     return cell
   }
