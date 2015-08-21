@@ -55,15 +55,15 @@ class GalleryViewController: UIViewController {
     
     if pinch.state == UIGestureRecognizerState.Ended {
       println("ended!")
-      scale = startingScale * pinch.scale
-      let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-      let newSize = CGSize(width: layout.itemSize.width * scale, height: layout.itemSize.height * scale)
-      
-      collectionView.performBatchUpdates({ () -> Void in
-        layout.itemSize = newSize
-        layout.invalidateLayout()
-        }, completion: nil )
-      
+       NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+          self.scale = self.startingScale * pinch.scale
+          let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+          let newSize = CGSize(width: layout.itemSize.width * self.scale, height: layout.itemSize.height * self.scale)
+          self.collectionView.performBatchUpdates({ () -> Void in
+            layout.itemSize = newSize
+            layout.invalidateLayout()
+           }, completion: nil )
+        })
     }
   }
   
